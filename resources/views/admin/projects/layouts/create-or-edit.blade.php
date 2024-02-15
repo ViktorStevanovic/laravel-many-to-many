@@ -13,16 +13,26 @@
         <label for="type_id" class="form-label">Project Type:</label>
         <select name="type_id" id="type_id" class="form-select" aria-label="Default select example">
             <option selected>Please choose a type for the project</option>
+
             @foreach ($types as $type)
             <option value="{{ $type->id}}"
                 {{ $type->id == old('type_id', $project->type_id) ? 'selected' : '' }}
                 
             >{{$type->title}}</option>                
             @endforeach
-
-
         </select>
     </div>
+</div>
+
+<div class="mb-3">
+    <div>
+        @foreach ($technologies as $technology)
+        <input type="checkbox" class="form-check-input" name="technologies[]" id="technologies-{{$technology->id}}" value="{{ $technology->id }}"
+        {{ in_array( $technology->id, old('technologies', $project->technologies->pluck('id')->toArray())) ? 'checked' : '' }}>
+        <label for="technologies-{{$technology->id}}">{{ $technology->name}}</label>
+        @endforeach
+    </div>
+
 </div>
 
 <div class="mb-3">

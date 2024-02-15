@@ -14,7 +14,14 @@
                         <p class="card-text"><span class="fw-bold fs-5">Project type:</span>
                             {{ $project->type->title }}
                         </p>
-                        <p class="card-text"><span class="fw-bold fs-5">Used Languages:</span> {{ $project->used_languages }}</p>
+                        <p class="card-text"><span class="fw-bold fs-5">Used Technologies:</span>
+                            <ul>
+                                @foreach ($project->technologies as $technology)
+                                    <li>{{ $technology->name}}</li>
+                                @endforeach
+
+                            </ul>
+                        </p>
                         <p class="card-text">
                             <span class="fw-bold fs-5">Repository Url:</span> 
                             <a href="{{ $project->project_url }}" target="_blank" class="link-underline link-underline-opacity-0">{{ $project->project_url }}</a>
