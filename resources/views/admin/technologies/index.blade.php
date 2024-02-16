@@ -15,44 +15,32 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Used technologies</th>
+                        <th scope="col">Name</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ( $projects as $project )
+                    @forelse ( $technologies as $technology )
                         <tr>
                             <th scope="row">
-                                {{ $project->id }}
+                                {{ $technology->id }}
                             </th>
                             <td>
-                                {{ $project->title }}
-                            </td>
-                            <td>
-                                {{ $project->description }}
-                            </td>
-                            <td>
-                            @foreach ($project->technologies as $technology)
-                            
                                 {{ $technology->name }}
-                            
-                            @endforeach
                             </td>
-
                             <td>
                                 <div class="d-flex mt-2 gap-1">
-                                    <a href="{{ route('admin.projects.show', $project) }}">
+                                    <a href="{{ route('admin.technologies.show', $technology) }}">
                                         <button class="btn btn-sm btn-primary">
                                             View
                                         </button>
                                     </a>
-                                    <a href="{{ route('admin.projects.edit', $project) }}">
+                                    <a href="{{ route('admin.technologies.edit', $technology) }}">
                                         <button class="btn btn-sm btn-success">
                                             Edit
                                         </button>
                                     </a>
-                                    <form class="d-inline-block" action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+                                    <form class="d-inline-block" action="{{ route('admin.technologies.destroy', $technology) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
     

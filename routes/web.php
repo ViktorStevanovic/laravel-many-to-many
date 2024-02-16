@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Admin\TechnologyController as AdminTechnologyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +34,10 @@ Route::middleware('auth')
         Route::patch('/projects/restore/{project}', [AdminProjectController::class, 'restoreProject'])->name('projects.restore');
         Route::delete('/projects/deleted/{project}', [AdminProjectController::class, 'destroyProject'])->name('projects.deleted.destroy');
 
+        Route::get('/technologies/deleted', [AdminTechnologyController::class, 'deletedProjects'])->name('technologies.deleted');
+        Route::patch('/technologies/restore/{technology}', [AdminTechnologyController::class, 'restoreTechnology'])->name('technologies.restore');
+        Route::delete('/technologies/deleted/{technology}', [AdminTechnologyController::class, 'destroyTechnology'])->name('technologies.deleted.destroy');
+
         Route::resource('/projects', AdminProjectController::class);
+        Route::resource('/technologies', AdminTechnologyController::class);
     });
