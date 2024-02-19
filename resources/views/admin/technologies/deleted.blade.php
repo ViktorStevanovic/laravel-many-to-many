@@ -2,8 +2,11 @@
 
 @section('title', 'Admin Cycle bin')
 
+@include('partials.technologies-header')
 @section('main-content')
+
 <div class="container">
+    @include('partials.session-message')
     <div class="row">
         <div class="col-12 p-2 mb-3 text-center">
             <h2>

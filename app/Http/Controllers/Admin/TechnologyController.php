@@ -36,7 +36,7 @@ class TechnologyController extends Controller
 
         $technology  = Technology::create($data);
 
-        return redirect()->route('admin.technologies.show', $technology);
+        return redirect()->route('admin.technologies.show', $technology)->with('message', $technology->name . ' has been created succesfully!')->with('alert-class', 'success');
     }
 
     /**
@@ -64,7 +64,7 @@ class TechnologyController extends Controller
         $data = $request->all();
         $technology->update($data);
 
-        return redirect()->route('admin.technologies.show', $technology);
+        return redirect()->route('admin.technologies.show', $technology)->with('message', $technology->name . ' has been edited succesfully!')->with('alert-class', 'success');
     }
 
     /**
@@ -73,7 +73,7 @@ class TechnologyController extends Controller
     public function destroy(Technology $technology)
     {
         $technology->delete();
-        return redirect()->route('admin.technologies.index');
+        return redirect()->route('admin.technologies.index')->with('message', $technology->name . ' has been moved to the destroyed page!')->with('alert-class', 'warning');
     }
     public function deletedProjects()
     {
@@ -86,7 +86,7 @@ class TechnologyController extends Controller
         $technology = Technology::withTrashed()->where('id', $id)->first();
         $technology->restore();
 
-        return redirect()->route('admin.technologies.show', $technology);
+        return redirect()->route('admin.technologies.show', $technology)->with('message', $technology->name . ' has been restored succesfully!')->with('alert-class', 'success');
     }
 
     public function destroyTechnology(string $id)
@@ -95,6 +95,6 @@ class TechnologyController extends Controller
         $technology->projects()->detach();
         $technology->forceDelete();
 
-        return redirect()->route('admin.technologies.deleted');
+        return redirect()->route('admin.technologies.deleted')->with('message', $technology->name . ' has been definitively deleted!')->with('alert-class', 'danger');
     }
 }

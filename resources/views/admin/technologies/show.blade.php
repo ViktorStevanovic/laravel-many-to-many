@@ -2,8 +2,11 @@
 
 @section('title', 'All technologys')
 
+@include('partials.technologies-header')
 @section('main-content')
+
     <div class="container">
+        @include('partials.session-message')
         <div class="row">
             <div class="col-12">
                 <div class="card">

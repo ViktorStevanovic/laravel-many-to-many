@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Admin Create')
+@include('partials.projects-header')
 
 @section('main-content')
 

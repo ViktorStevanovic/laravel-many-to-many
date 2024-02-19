@@ -2,6 +2,7 @@
 
 @section('title', 'Admin Edit')
 
+@include('partials.technologies-header')
 @section('main-content')
 
 <section class="p-5 container">

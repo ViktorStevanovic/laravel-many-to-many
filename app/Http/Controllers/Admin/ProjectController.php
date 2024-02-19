@@ -56,7 +56,7 @@ class ProjectController extends Controller
 
 
 
-        return redirect()->route('admin.projects.show', $project);
+        return redirect()->route('admin.projects.show', $project)->with('message', $project->title . ' has been created succesfully!')->with('alert-class', 'success');
     }
 
     /**
@@ -87,7 +87,7 @@ class ProjectController extends Controller
         $project->update($data);
         $project->technologies()->sync($data['technologies']);
 
-        return redirect()->route('admin.projects.show', $project);
+        return redirect()->route('admin.projects.show', $project)->with('message', $project->title . ' has been edited succesfully!')->with('alert-class', 'success');
     }
 
     /**
@@ -96,7 +96,7 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.index')->with('message', $project->title . ' has been deleted and moved to the deleted page!')->with('alert-class', 'warning');
     }
 
     public function deletedProjects()
@@ -110,7 +110,7 @@ class ProjectController extends Controller
         $project = Project::withTrashed()->where('id', $id)->first();
         $project->restore();
 
-        return redirect()->route('admin.projects.show', $project);
+        return redirect()->route('admin.projects.show', $project)->with('message', $project->title . ' has been restored succesfully!')->with('alert-class', 'success');
     }
 
     public function destroyProject(string $id)
@@ -119,6 +119,7 @@ class ProjectController extends Controller
         $project->technologies()->detach();
         $project->forceDelete();
 
-        return redirect()->route('admin.projects.deleted');
+        return redirect()->route('admin.projects.deleted')->with('message', $project->title . ' has been definitively
+        deleted!')->with('alert-class', 'danger');
     }
 }
