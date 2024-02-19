@@ -10,10 +10,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <h5 class="card-header">technology {{ $technology->id }}</h5>
+                    <h5 class="card-header">Technology {{ $technology->id }}</h5>
                     <div class="card-body">
                         <h2 class="card-title">{{ $technology->name }}</h2>
-                        <p class="card-text">{{ $technology->description }}</p>
+                        <p class="card-text mb-3">Link to {{$technology->name}}'s documentation: 
+                            <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ $technology->documentation_link }}">{{ $technology->documentation_link }}</a>
+                        </p>
 
                         <a href="{{ route('admin.technologies.edit', $technology) }}" class="btn btn-warning">Edit</a>
 
