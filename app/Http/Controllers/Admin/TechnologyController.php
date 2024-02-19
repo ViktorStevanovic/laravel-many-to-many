@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class TechnologyController extends Controller
 {
@@ -33,9 +35,10 @@ class TechnologyController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
-        $technology  = Technology::create($data);
-
+        $technology = new Technology($data);
+        $technology->save();
+        $data['slug'] = Str::slug($technology->id . ' ' . $technology->name);
+        $technology->update($data);
         return redirect()->route('admin.technologies.show', $technology)->with('message', $technology->name . ' has been created succesfully!')->with('alert-class', 'success');
     }
 

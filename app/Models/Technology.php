@@ -13,6 +13,8 @@ class Technology extends Model
 
     protected $fillable = [
         'name',
+        'slug',
+        'documentation_link'
     ];
 
     public function projects()
